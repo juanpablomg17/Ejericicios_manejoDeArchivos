@@ -77,7 +77,8 @@ def Escribir():
             with open('contactos.csv','a',newline='') as file:
                 writer = csv.writer(file,delimiter=",")
                 writer.writerow(oneContact)
-                print("CONTACTO GUARDADO CORRECTAMENTE")
+                print("-----------------CONTACTO GUARDADO CORRECTAMENTE--------------------")
+                print("\n")
             correcto = True
         except ValueError:
             print("ERROR, RECUERDE QUE LA CANTIDAD INGRESADA EN EL CAMPO DEL TELÉFONO, DEBE SER \n DE TIPO NUMÉRICA")
@@ -85,17 +86,29 @@ def Escribir():
 
 
 def Leer():
-    filename = open('contactos.csv','r')
-    df = pandas.read_csv(filename)
-    if (df.empty == True):
-        print("El archivo está vacío")
     
-    else:
+    with open('contactos.csv','r') as file:
+        print("-----------------LISTA DE CONTACTOS--------------------")
+        print("[Nombre , Telefono, Email]")
+        file_reader = csv.reader(file)
+        for row in file_reader:
+            print(row)
+    
+       
 
-        with open('contactos.csv','r') as csv_file:
-            print('Nombre , Telefono, Email')
-            for row in csv_reader:
-                print(row)
+def LeerTodo():
+    correcto = False
+    while not correcto:
+        try:
+            Leer()
+            correcto = True
+
+            
+        except FileNotFoundError as identifier:
+            print("el arhivo está vacío")
+            correcto = True
+            
+    
        
 
 
@@ -118,19 +131,19 @@ def Menu():
                     Escribir()
                 
                 elif (op==2):
-                    Leer()
+                    LeerTodo()
                 elif (op==3):
                     print("Suerte :) ")
                     salir = True
+                elif ((op != 1) and (op!= 2) and (op !=3)):
+                    print("ERROR, OPCIÓN INCORRECTA")
             correcto = True
         except:
             print("ERROR!,LA OPCIÓN ES DE TIPO NUMÉRICA")
      
         
         
-
 Menu()
-        
         
         
         
