@@ -1,75 +1,139 @@
 import csv
+import numpy as np
+import pandas
+# class Contacto:
+
+#     def __init__(self,nombre,telefono,email):
+#         self.nombre = nombre
+#         self.telefono = telefono
+#         self.email = email
+#         print("Se ha creado un contacto nuevo con el nombre de :",self.nombre)
+
+#     def __str__(self):
+#         return "{} {} {}".format(self.nombre,self.telefono,self.email)
+
+
+# class ListaContacto:
+#     contactos =[]
+
+#     def __init__(self):
+#         listaDeContactos = open("archivo.csv",'a')
+        
+        
+#         listaDeContactos.close()
+#         del(listaDeContactos)
+
+#     def agregarContactos(self,c):
+#         self.contactos.append(c)
+#         self.guardarContactosEnFicheroExterno()
+    
+#     def MostrarContactos(self):
+#         for i in self.contactos:
+#             print(i)
+
+#     def guardarContactosEnFicheroExterno(self):
+#         with open("archivo.csv",'w',newline='') as file:
+#             writer = csv.writer(file,delimiter=',')
+#             writer.writerow(self.contactos)
+        
+
+#     def mostrarInforFicheroExterno(self):
+#         print("la información del fichero externo es la siguiente: ")
+#         with open('archivo.csv','r') as csv_file:
+#             csv_reader = csv.reader(csv_file)
+#             for row in csv_reader:
+#                 print(row)
 
 
 
+# milista = ListaContacto()
+
+# c3 = Contacto("Pablo","45234234","jufiahf@mai-fefopcm")
+
+# milista.agregarContactos(c3)
+# milista.mostrarInforFicheroExterno()
+
+
+     
+    
+    
+
+    
 
 
 def Escribir():
-    contacts = []
-    oneContact = []
-    n = int(input("cuantos contactos desea agregar: "))
-    
-    for i in range(0,n,1):
-        name = input("Digite el nombre de su contacto: ")
-        phone = int(input("Digite el número de su contacto: "))
-        email = input("Digite el email de su contacto: ")
-
-        print("Ingrese la información de otro contacto...")
-        oneContact=[name,phone,email]
-        contacts.append(oneContact)
-
-    with open("contactos.csv",'w',newline='') as file:
-        writer = csv.writer(file,delimiter=',')
-        
-        writer.writerow(["Nombre","Telefono","Email"])
-        
-        writer.writerows(contacts)
-        
-
-    
-
+    correcto = False
+    while not correcto:
+        try:    
+            oneContact = []
+            print("Para agregar un nuevo contacto, diligencia los siguientes campos: ")
+            name = input("Digite el nombre de su contacto: ")
+            phone = int(input("Digite el número de su contacto: "))
+            email = input("Digite el email de su contacto: ")
 
         
-
-
-
-    # archivo_contactos = open("contactos.csv","w")
-    # archivo_contactos_w = csv.writer(archivo_contactos,delimiter="-")
-
-    # cabecera = ["Nombre","Telefono","Email"]
-    # archivo_contactos_w.writerow(cabecera)
-    # op = input("Desea Agregar un nuevo contacto?  y/n")
-    
-    # if ((op == 'y') or op == 'Y'):
-    #     n = int(input("¿cuántos contactos desea agregar?"))
-    #     new_contactos= []
-    #     for i in range(1,n+1,1):
-    #         name = input("Digite el nombre de su contacto: ")
-    #         phone = int(input("Digite el número de su contacto: "))
-    #         email = input("Digite el email de su contacto: ")
-    #         one_contact=[name,phone,email]
-
-    #         new_contactos.append(one_contact)
-    #         archivo_contactos_w.writerows(new_contactos)
-    # else: 
-    #     print("entonces para qué mierda le da a esta opción")
-
+            oneContact=[name,phone,email]
         
-    
-    
+            with open('contactos.csv','a',newline='') as file:
+                writer = csv.writer(file,delimiter=",")
+                writer.writerow(oneContact)
+                print("CONTACTO GUARDADO CORRECTAMENTE")
+            correcto = True
+        except ValueError:
+            print("ERROR, RECUERDE QUE LA CANTIDAD INGRESADA EN EL CAMPO DEL TELÉFONO, DEBE SER \n DE TIPO NUMÉRICA")
+                
 
-    # archivo_contactos.close()
-    # del (archivo_contactos)
 
 def Leer():
-    with open('contactos.csv','r') as csv_file:
+    filename = open('contactos.csv','r')
+    df = pandas.read_csv(filename)
+    if (df.empty == True):
+        print("El archivo está vacío")
+    
+    else:
 
-        csv_reader = csv.reader(csv_file)
+        with open('contactos.csv','r') as csv_file:
+            print('Nombre , Telefono, Email')
+            for row in csv_reader:
+                print(row)
+       
+
+
+
+def Menu():
+    correcto = False
+    while not correcto:
+        try:
+            op = 0
+   
+            salir = False
+            while(not salir):
+                print("-----------------GESTION DE AGENDA--------------------")
+                print("----MENÚ PRINCIPAL")
+                print("1.Agregar Contactos \n 2.Ver Contactos \n 3.Salir")
+                op = 0
+                op = int(input("Elige una opción: "))
+                
+                if (op==1):
+                    Escribir()
+                
+                elif (op==2):
+                    Leer()
+                elif (op==3):
+                    print("Suerte :) ")
+                    salir = True
+            correcto = True
+        except:
+            print("ERROR!,LA OPCIÓN ES DE TIPO NUMÉRICA")
+     
         
-        for row in csv_reader:
-            print(row)
+        
 
-
-Leer()
+Menu()
+        
+        
+        
+        
+         
 
 
