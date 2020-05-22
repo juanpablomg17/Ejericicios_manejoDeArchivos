@@ -22,9 +22,12 @@ def Escribir():
                 writer.writerow(oneContact)
                 print("-----------------CONTACTO GUARDADO CORRECTAMENTE--------------------")
                 print("\n")
+                file.close() 
             correcto = True
+                   
         except ValueError:
             print("ERROR, RECUERDE QUE LA CANTIDAD INGRESADA EN EL CAMPO DEL TELÉFONO, DEBE SER \n DE TIPO NUMÉRICA")
+                
                 
 
 
@@ -36,6 +39,7 @@ def Leer():
         file_reader = csv.reader(file)
         for row in file_reader:
             print(row)
+        file.close()
     
        
 
@@ -49,7 +53,7 @@ def LeerTodo():
             
         except FileNotFoundError as identifier:
             print("-------------------------------------")
-            print("El archivo está vacío")
+            print("ERROR!!!, El archivo está vacío")
             print("-------------------------------------")
             correcto = True
             
@@ -67,8 +71,8 @@ def Menu():
             salir = False
             while(not salir):
                 print("-----------------GESTION DE AGENDA--------------------")
-                print("----MENÚ PRINCIPAL")
-                print("1.Agregar Contactos \n 2.Ver Contactos \n 3.Salir")
+                print("-/-/-/-/-/-/-/--/MENÚ PRINCIPAL-/-/-/-/-/-/-/-/-/-/-/-")
+                print(" 1.Agregar Contactos \n 2.Ver Contactos \n 3.Salir")
                 op = 0
                 op = int(input("Elige una opción: "))
                 

@@ -49,7 +49,9 @@ def MostrarArchivoTest():
 
             
         except FileNotFoundError as identifier:
-            print("el arhivo está vacío")
+            print("-------------------------------")
+            print("ERROR!!!, el arhivo está vacío")
+            print("------------------------------")
             correcto = True
 
 
@@ -63,8 +65,8 @@ def Menu ():
    
             salir = False
             while(not salir):
-                print("----MENÚ PRINCIPAL")
-                print("1.Guardar n candenas en n líneas de texto \n 2.Ver información del arhivo de texto \n 3.Salir")
+                print("------------------MENÚ PRINCIPAL------------------------")
+                print(" 1.Guardar n candenas en n líneas de texto \n 2.Ver información del arhivo de texto \n 3.Salir")
                 op = 0
                 op = int(input("Elige una opción: "))
                 
