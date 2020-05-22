@@ -4,6 +4,7 @@ def EscribirArchivo():
     archivo_texto = open("ejercicio1.txt","a")
     word = input("Digite la que cadena que desea guardar en el archivo: ")
     archivo_texto.write(word+ '\n') 
+    print("\n ¡CADENA DE TEXTO GUARDADA CORRECTAMENTE!")
 
 def MostrarBytes():
 
@@ -15,6 +16,7 @@ def MostrarBytes():
     print("------------------------------------------------------------------")
     print(f"los {n} primeros bytes corresponden a la cadena: {cantidad_bytes}")
     print("-------------------------------------------------------------------")
+    arhivo2.seek(0)
 
    
 
@@ -28,7 +30,7 @@ def MostrarBytesTest():
 
         except FileNotFoundError as identifier:
             print("-------------------------------------")
-            print("El archivo está vacío")
+            print("ERROR!!!,El archivo está vacío")
             print("-------------------------------------")
             correcto = True
 
@@ -41,8 +43,8 @@ def Menu():
    
             salir = False
             while(not salir):
-                print("----MENÚ PRINCIPAL")
-                print("1.Escribir en archivo \n 2.Ver n primeros bytes del archivo \n 3.Salir")
+                print("------------------MENÚ PRINCIPAL-----------------------")
+                print(" 1.Escribir en archivo \n 2.Ver n primeros bytes del archivo \n 3.Salir")
                 op = 0
                 op = int(input("Elige una opción: "))
                 
